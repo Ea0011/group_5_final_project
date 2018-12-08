@@ -12,6 +12,13 @@ export const patients = (state = {}, action) => {
             delete newState[action.payload.patientId];
             return newState;
         }
+        case actionTypes.UPDATE_PATIENT: {
+            const { patientId, newPatient } = action.payload;
+            const newDetails = Object.assign({}, state[patientId], newPatient);
+            const updatedPatient = {};
+            updatedPatient[patientId] = newDetails;
+            return Object.assign({}, state, updatedPatient);
+        }
         default:
             return state;
     }
