@@ -7,3 +7,7 @@ export const addPatient = (patient) => {
     action.payload = newPatient;
     return action;
 }
+
+export const deletePatient = (patientId) => {
+    return { type: actionTypes.DELETE_PATIENT, payload: { patientId } };
+}

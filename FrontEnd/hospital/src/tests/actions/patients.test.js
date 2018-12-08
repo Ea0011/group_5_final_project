@@ -32,4 +32,13 @@ describe("Patients action generator", () => {
             })
         })
     })
+
+    describe("Delete patient", () => {
+        test("should generate correct payload", () => {
+            expect(actions.deletePatient(23)).toEqual({
+                type: actionTypes.DELETE_PATIENT,
+                payload: { patientId: 23 }
+            })
+        })
+    })
 })
