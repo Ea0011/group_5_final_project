@@ -7,6 +7,11 @@ export const patients = (state = {}, action) => {
             newPatient[action.payload.patientId] = {...action.payload};
             return Object.assign(state, newPatient);
         }
+        case actionTypes.DELETE_PATIENT: {
+            const newState = {...state};
+            delete newState[action.payload.patientId];
+            return newState;
+        }
         default:
             return state;
     }
