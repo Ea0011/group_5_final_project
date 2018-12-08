@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/actionTypes';
+import { updatePatient } from '../actions/patients';
 
 export const patients = (state = {}, action) => {
     switch(action.type) {
@@ -18,6 +19,14 @@ export const patients = (state = {}, action) => {
             const updatedPatient = {};
             updatedPatient[patientId] = newDetails;
             return Object.assign({}, state, updatedPatient);
+        }
+        case actionTypes.ADD_PATIENT_APPOINTMENT: {
+            const { patientId, appointmentId } = action.payload;
+            const newDetails = { ...state[patientId] };
+            newDetails.appointments.push(appointmentId);
+            const updatedPatient = {}
+            updatedPatient[patientId] = newDetails;
+            return Object.assign({}, state, updatePatient);
         }
         default:
             return state;

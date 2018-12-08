@@ -56,4 +56,23 @@ describe("Patients reducer correctly manipulates state", () => {
             })
         })
     })
+
+    describe("Add appointment to a patient", () => {
+        test("Should add an appointment to a patient with given id", () => {
+            expect(patients({
+                23: patient
+            }, actions.addPatientAppointment(23, 2))).toEqual({
+                23: {
+                    patientId: 23,
+                    fname: 'Some',
+                    lname: 'Name',
+                    age: 23,
+                    gender: 'Male',
+                    phone: '+37477434343',
+                    email: 'somemail@mail.ru',
+                    appointments: [2]
+                }
+            })
+        })
+    })
 })
