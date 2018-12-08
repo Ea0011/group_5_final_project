@@ -38,5 +38,4 @@ describe("Patients reducer correctly manipulates state", () => {
             }, actions.deletePatient(23))).toEqual({});
         })
     })
-    
 })
