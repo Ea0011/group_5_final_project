@@ -55,4 +55,13 @@ describe("Patients action generator", () => {
                 })
         })
     })
+
+    describe("Add an appointment to a patient", () => {
+        test("Should generate correct payload", () => {
+            expect(actions.addPatientAppointment(23, 2)).toEqual({
+                type: actionTypes.ADD_PATIENT_APPOINTMENT,
+                payload: { patientId: 23, appointmentId: 2 }
+            })
+        })
+    })
 })
