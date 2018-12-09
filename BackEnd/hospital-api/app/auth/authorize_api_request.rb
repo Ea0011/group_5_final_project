@@ -12,7 +12,7 @@ class AuthorizeApiRequest
     private
 
     def user
-        @user = Admin.where(authentication_token: auth_headers).first
+        @user = Admin.find_by!(authentication_token: auth_headers)
 
         #handle the case when the user is not found
         rescue ActiveRecord::RecordNotFound => e

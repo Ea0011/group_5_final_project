@@ -5,6 +5,7 @@ module ExceptionHandler
     class InvalidToken < StandardError; end
     class MissingToken < StandardError; end
     class AuthorizationError < StandardError; end
+    class NotEnoughPrivilliges < StandardError; end
 
     included do
         rescue_from ActiveRecord::RecordNotFound do |e|
@@ -19,6 +20,7 @@ module ExceptionHandler
         rescue_from ExceptionHandler::InvalidToken, with: :four_zero_one
         rescue_from ExceptionHandler::MissingToken, with: :four_zero_one
         rescue_from ExceptionHandler::AuthorizationError, with: :four_zero_one
+        rescue_from ExceptionHandler::NotEnoughPrivileges, with: :four_zero_one
     end
 
     private

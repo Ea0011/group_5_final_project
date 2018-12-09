@@ -1,7 +1,8 @@
 class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_user, only: [:create, :update, :destroy]
+  before_action :authenticate_super_user, only: [:create, :update, :destroy]
 
-  
   def index
     @doctors = Doctor.all
 

@@ -10,7 +10,10 @@ class ApplicationController < ActionController::API
         @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
     end
 
-    def super_user?
-        # true -> super user, false -> just an admin
+    def authenticate_super_user
+        @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
+        unless @current_user.super_user
+            raise(ExceptionHandler::NotEnoughPrivileges, "Not enough privileges")
+        end
     end
 end
