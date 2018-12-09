@@ -50,3 +50,4 @@
 /FrontEnd/hospital/npm-debug.log*
 /FrontEnd/hospital/yarn-debug.log*
 /FrontEnd/hospital/yarn-error.log*
+.vscode
