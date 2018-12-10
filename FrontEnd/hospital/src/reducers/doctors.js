@@ -28,6 +28,14 @@ export const doctors = (state = {}, action) => {
             const newDcotors = { ...state[specialization], [doctorId]: newDetails };
             return { ...state, [specialization]: newDcotors };
         }
+        case actionTypes.ADD_DOCTOR_APPOINTMENT: {
+            const { specialization, doctorId, appointmentId } = action.payload;
+            const currentAppointments = [ ...state[specialization][doctorId].appointments ];
+            currentAppointments.push(appointmentId);
+            const newDetails = Object.assign({}, state[specialization][doctorId], { appointments: currentAppointments });
+            const newDoctors = { ...state[specialization], [doctorId]: newDetails };
+            return { ...state, [specialization]: newDoctors };
+        }
         default:
             return state;
     }

@@ -44,4 +44,17 @@ describe("Doctors action generators", () => {
             })
         })
     })
+
+    describe("Add doctor appointment", () => {
+        test("Should generate correct payload", () => {
+            expect(actions.addDoctorAppointment('spec', 1, 1)).toEqual({
+                type: actionTypes.ADD_DOCTOR_APPOINTMENT,
+                payload: {
+                    specialization: 'spec',
+                    doctorId: 1,
+                    appointmentId: 1
+                 }
+            })
+        })
+    })
 })
