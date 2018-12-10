@@ -5,3 +5,11 @@ export const addDoctor = doctor => {
     const newDoctor = { ...doctor, appointments };
     return { type: actionTypes.ADD_DOCTOR, payload: newDoctor };
 }
+
+export const deleteDoctor = (specialization, doctorId) => (
+    { type: actionTypes.DELETE_DOCTOR, payload: { specialization, doctorId } }
+)
+
+export const updateDoctor = (specialization, doctorId) => (
+    { type: actionTypes.UPDATE_DOCTOR, payload: { specialization, doctorId } }
+)

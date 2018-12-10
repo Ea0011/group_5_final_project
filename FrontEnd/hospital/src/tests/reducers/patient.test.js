@@ -75,4 +75,24 @@ describe("Patients reducer correctly manipulates state", () => {
             })
         })
     })
+
+    describe("Delete an appointment from the patient", () => {
+        test("Should remove given appointment from the given patient", () => {
+            patient.appointments.push(2);
+            expect(patients({
+                23: patient
+            }, actions.deletePatientAppointment(23, 2))).toEqual({
+                23: {
+                    patientId: 23,
+                    fname: 'Some',
+                    lname: 'Name',
+                    age: 23,
+                    gender: 'Male',
+                    phone: '+37477434343',
+                    email: 'somemail@mail.ru',
+                    appointments: []
+                }
+            })
+        })
+    })
 })

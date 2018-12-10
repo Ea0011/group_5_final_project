@@ -29,7 +29,7 @@ module ExceptionHandler
         json_response({ message: e.message }, :unauthorized)
     end
 
-    def four_two_two
+    def four_two_two(e)
         json_response({ message: e.message }, :unprocessable_entity)
     end
 end

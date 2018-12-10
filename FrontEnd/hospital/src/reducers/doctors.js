@@ -16,6 +16,12 @@ export const doctors = (state = {}, action) => {
                 return newState;
             }
         }
+        case actionTypes.DELETE_DOCTOR: {
+            const { specialization, doctorId } = action.payload;
+            const currentDoctors = { ...state[specialization] };
+            delete currentDoctors[doctorId];
+            return { ...state, [specialization]: currentDoctors };
+        }
         default:
             return state;
     }

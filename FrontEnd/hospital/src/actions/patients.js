@@ -19,3 +19,7 @@ export const updatePatient = (patientId, newPatient) => (
 export const addPatientAppointment = (patientId, appointmentId) => (
     { type: actionTypes.ADD_PATIENT_APPOINTMENT, payload: { patientId, appointmentId } }
 )
+
+export const deletePatientAppointment = (patientId, appointmentId) => (
+    { type: actionTypes.DELETE_PATIENT_APPOINTMENT, payload: { patientId, appointmentId } }
+)

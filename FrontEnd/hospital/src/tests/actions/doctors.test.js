@@ -26,4 +26,22 @@ describe("Doctors action generators", () => {
             })
         })
     })
+
+    describe("Delete a doctor", () => {
+        test("should generate correct payload", () => {
+            expect(actions.deleteDoctor('spec', 1)).toEqual({
+                type: actionTypes.DELETE_DOCTOR,
+                payload: { specialization: 'spec', doctorId: 1 }
+            })
+        })
+    })
+
+    describe("Update a doctor", () => {
+        test("Should generate correct payload", () => {
+            expect(actions.updateDoctor('spec', 1)).toEqual({
+                type: actionTypes.UPDATE_DOCTOR,
+                payload: { specialization: 'spec', doctorId: 1 }
+            })
+        })
+    })
 })

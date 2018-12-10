@@ -41,4 +41,15 @@ describe("Doctors reducer should correctly manipulate store", () => {
             })
         })
     })
+
+    describe("Delete doctor", () => {
+        test("Should delete doctor with the give specialization and id", () => {
+            const state = {
+                srtaban: {
+                    23: doctor 
+                }
+            }
+            expect(doctors(state, actions.deleteDoctor('srtaban', 23))).toEqual({ srtaban: {} });
+        })
+    })
 })

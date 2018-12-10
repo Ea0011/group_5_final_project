@@ -21,9 +21,20 @@ export const patients = (state = {}, action) => {
         }
         case actionTypes.ADD_PATIENT_APPOINTMENT: {
             const { patientId, appointmentId } = action.payload;
-            const newDetails = { ...state[patientId] };
-            newDetails.appointments.push(appointmentId);
+            const currentAppointments = [ ...state[patientId].appointments ];
+            currentAppointments.push(appointmentId);
+            const newDetails = { ...state[patientId], appointments: currentAppointments };
             const updatedPatient = {}
+            updatedPatient[patientId] = newDetails;
+            return Object.assign({}, state, updatedPatient);
+        }
+        case actionTypes.DELETE_PATIENT_APPOINTMENT: {
+            const { patientId, appointmentId } = action.payload;
+            const currentAppointments = [ ...state[patientId].appointments ];
+            const appointmentIdx = currentAppointments.indexOf(appointmentId);
+            currentAppointments.splice(appointmentIdx, 1);
+            const newDetails = { ...state[patientId], appointments: currentAppointments };
+            const updatedPatient = {};
             updatedPatient[patientId] = newDetails;
             return Object.assign({}, state, updatedPatient);
         }
