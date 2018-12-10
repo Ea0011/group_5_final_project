@@ -38,9 +38,9 @@ describe("Doctors action generators", () => {
 
     describe("Update a doctor", () => {
         test("Should generate correct payload", () => {
-            expect(actions.updateDoctor('spec', 1)).toEqual({
+            expect(actions.updateDoctor('spec', 1, { fname: 'Vineti' })).toEqual({
                 type: actionTypes.UPDATE_DOCTOR,
-                payload: { specialization: 'spec', doctorId: 1 }
+                payload: { specialization: 'spec', doctorId: 1, newDoctor: { fname: 'Vineti' } }
             })
         })
     })

@@ -22,6 +22,12 @@ export const doctors = (state = {}, action) => {
             delete currentDoctors[doctorId];
             return { ...state, [specialization]: currentDoctors };
         }
+        case actionTypes.UPDATE_DOCTOR: {
+            const { specialization, doctorId, newDoctor } = action.payload;
+            const newDetails = Object.assign({}, state[specialization][doctorId], newDoctor);
+            const newDcotors = { ...state[specialization], [doctorId]: newDetails };
+            return { ...state, [specialization]: newDcotors };
+        }
         default:
             return state;
     }
