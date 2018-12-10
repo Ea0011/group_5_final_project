@@ -36,6 +36,15 @@ export const doctors = (state = {}, action) => {
             const newDoctors = { ...state[specialization], [doctorId]: newDetails };
             return { ...state, [specialization]: newDoctors };
         }
+        case actionTypes.DELETE_DOCTOR_APPOINTMENT: {
+            const { specialization, doctorId, appointmentId } = action.payload;
+            const currentAppointments = [ ...state[specialization][doctorId].appointments ];
+            const appointmentIdx = currentAppointments.indexOf(appointmentId);
+            currentAppointments.splice(appointmentIdx, 1);
+            const newDetails = Object.assign({}, state[specialization][doctorId], { appointments: currentAppointments });
+            const newDoctors = { ...state[specialization], [doctorId]: newDetails };
+            return { ...state, [specialization]: newDoctors };
+        }
         default:
             return state;
     }

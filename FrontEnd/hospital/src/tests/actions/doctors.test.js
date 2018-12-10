@@ -47,13 +47,26 @@ describe("Doctors action generators", () => {
 
     describe("Add doctor appointment", () => {
         test("Should generate correct payload", () => {
-            expect(actions.addDoctorAppointment('spec', 1, 1)).toEqual({
+            expect(actions.addDoctorAppointment('spec',1 , 1)).toEqual({
                 type: actionTypes.ADD_DOCTOR_APPOINTMENT,
                 payload: {
                     specialization: 'spec',
                     doctorId: 1,
                     appointmentId: 1
                  }
+            })
+        })
+    })
+
+    describe("Delete doctor appointment", () => {
+        test("Should genrate correct payload", () => {
+            expect(actions.deleteDoctorAppointment('spec', 1, 1, 1)).toEqual({
+                type: actionTypes.DELETE_DOCTOR_APPOINTMENT,
+                payload: {
+                    specialization: 'spec',
+                    doctorId: 1,
+                    appointmentId: 1
+                }
             })
         })
     })

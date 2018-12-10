@@ -94,4 +94,26 @@ describe("Doctors reducer should correctly manipulate store", () => {
             })
         })
     })
+
+    describe("Delete appointment from doctor", () => {
+        test("Should delete an appointment from doctor", () => {
+            doctor.appointments.push(1);
+            const state = {
+                srtaban: {
+                    23: doctor
+                }
+            }
+            expect(doctors(state, actions.deleteDoctorAppointment('srtaban', 23, 1))).toEqual({
+                srtaban: {
+                    23: {
+                        doctorId: 23,
+                        fname: 'Some',
+                        lname: 'Name',
+                        specialization: 'srtaban',
+                        appointments: []
+                    }
+                }
+            })
+        })
+    })
 })
