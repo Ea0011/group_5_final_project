@@ -3,7 +3,7 @@ import * as actions from '../../actions/patients';
 
 describe("Patients reducer correctly manipulates state", () => {
     const patient = {
-        patientId: 23,
+        id: 23,
         fname: 'Some',
         lname: 'Name',
         age: 23,
@@ -17,7 +17,7 @@ describe("Patients reducer correctly manipulates state", () => {
         test("Should add correct patient to the store", () => {
             expect(patients({}, actions.addPatient(patient))).toEqual({
                 23: {
-                    patientId: 23,
+                    id: 23,
                     fname: 'Some',
                     lname: 'Name',
                     age: 23,
@@ -44,7 +44,7 @@ describe("Patients reducer correctly manipulates state", () => {
                 23: patient
             }, actions.updatePatient(23, { lname: 'Edvard' }))).toEqual({
                 23: {
-                    patientId: 23,
+                    id: 23,
                     fname: 'Some',
                     lname: 'Edvard',
                     age: 23,
@@ -63,7 +63,7 @@ describe("Patients reducer correctly manipulates state", () => {
                 23: patient
             }, actions.addPatientAppointment(23, 2))).toEqual({
                 23: {
-                    patientId: 23,
+                    id: 23,
                     fname: 'Some',
                     lname: 'Name',
                     age: 23,
@@ -83,7 +83,7 @@ describe("Patients reducer correctly manipulates state", () => {
                 23: patient
             }, actions.deletePatientAppointment(23, 2))).toEqual({
                 23: {
-                    patientId: 23,
+                    id: 23,
                     fname: 'Some',
                     lname: 'Name',
                     age: 23,

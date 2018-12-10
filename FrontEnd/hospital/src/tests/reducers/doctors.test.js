@@ -4,7 +4,7 @@ import { doctors } from '../../reducers/doctors';
 
 describe("Doctors reducer should correctly manipulate store", () => {
     const doctor = {
-        doctorId: 23,
+        id: 23,
         fname: 'Some',
         lname: 'Name',
         specialization: 'srtaban',
@@ -15,7 +15,7 @@ describe("Doctors reducer should correctly manipulate store", () => {
             expect(doctors({srtaban: {}}, actions.addDoctor(doctor))).toEqual({
                 srtaban: {
                     23: {
-                        doctorId: 23,
+                        id: 23,
                         fname: 'Some',
                         lname: 'Name',
                         specialization: 'srtaban',
@@ -31,7 +31,7 @@ describe("Doctors reducer should correctly manipulate store", () => {
             expect(doctors({}, actions.addDoctor(doctor))).toEqual({
                 srtaban: {
                     23: {
-                        doctorId: 23,
+                        id: 23,
                         fname: 'Some',
                         lname: 'Name',
                         specialization: 'srtaban',
@@ -63,7 +63,7 @@ describe("Doctors reducer should correctly manipulate store", () => {
             expect(doctors(state, actions.updateDoctor('srtaban', 23, { fname: 'Vineti' }))).toEqual({
                 srtaban: {
                     23: {
-                        doctorId: 23,
+                        id: 23,
                         fname: 'Vineti',
                         lname: 'Name',
                         specialization: 'srtaban',
@@ -84,7 +84,7 @@ describe("Doctors reducer should correctly manipulate store", () => {
             expect(doctors(state, actions.addDoctorAppointment('srtaban', 23, 1))).toEqual({
                 srtaban: {
                     23: {
-                        doctorId: 23,
+                        id: 23,
                         fname: 'Some',
                         lname: 'Name',
                         specialization: 'srtaban',
@@ -106,7 +106,7 @@ describe("Doctors reducer should correctly manipulate store", () => {
             expect(doctors(state, actions.deleteDoctorAppointment('srtaban', 23, 1))).toEqual({
                 srtaban: {
                     23: {
-                        doctorId: 23,
+                        id: 23,
                         fname: 'Some',
                         lname: 'Name',
                         specialization: 'srtaban',
