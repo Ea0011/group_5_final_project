@@ -2,13 +2,8 @@ import * as actionTypes from '../constants/actionTypes';
 
 export const addProcedure = procedure => {
     const action = { type: actionTypes.ADD_PROCEDURE };
-<<<<<<< HEAD
-    const appointments = [1];
-    const newProcedure = { ...procedure,  appointments};
-=======
     const appointments = procedure.appointments.map(appointment => appointment.id);
     const newProcedure = { ...procedure, appointments };
->>>>>>> 1f43735e25ffa8ca370dcbd3b45120208b61376e
     action.payload = newProcedure;
     return action;
 }

@@ -102,4 +102,20 @@ describe("Selectors for redux store", () => {
           expect(selectors.getProcedureByAppointment(store, 1)).toEqual(store.procedures[30]);
       })
   })
+
+  describe("Get appointments by procedure", () => {
+      test("Should get all appointments from the procedure", () => {
+          expect(selectors.getAppointmentsByProcedure(store, 30)).toEqual([
+            {
+                patient: 3,
+                doctor: 27,
+                procedure: 30,
+                specialist: 'srtaban',
+                start_date: 'esor jam@ 7',
+                end_date: 'esor jam@ 8',
+                status: 'complete'
+            }
+          ])
+      })
+  })
 })
