@@ -29,7 +29,10 @@ export const getProcedureByAppointment = (state = {}, appointmentId) => {
 }
 
 export const getAppointmentsByProcedure = (state = {}, procedureId) => {
-  //write tests for this
+  const { appointments } = state.procedures[procedureId];
+  const appts = [];
+  appointments.forEach(appt => appts.push(state.appointments[appt]));
+  return appts;
 }
 
 export const getDoctorsBySpecialization = (state = {}, specialization) => {
