@@ -27,6 +27,16 @@ export const patients = (state = {}, action) => {
             updatedProcedure[procedureId] = newDetails;
             return Object.assign({}, state, updatedProcedure);
         }
+        case actionTypes.DELETE_PROCEDURE_APPOINTMENT: {
+            const { id, appointmentId } = action.payload;
+            const currentAppointments = [ ...state[id].appointments ];
+            const appointmentIdx = currentAppointments.indexOf(appointmentId);
+            currentAppointments.splice(appointmentIdx, 1);
+            const newDetails = { ...state[id], appointments: currentAppointments };
+            const updatedProcedure = {};
+            updatedProcedure[id] = newDetails;
+            return Object.assign({}, state, updatedPatient);
+        }
         default:
             return state;
     }

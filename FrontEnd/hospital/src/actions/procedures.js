@@ -16,6 +16,10 @@ export const updateProcedure = (procedureId, newProcedure) => (
     { type: actionTypes.UPDATE_PROCEDURE, payload: { procedureId, newProcedure} }
 )
 
-export const addPatientAppointment = (patientId, appointmentId) => (
-    { type: actionTypes.ADD_PATIENT_APPOINTMENT, payload: { patientId, appointmentId } }
+export const addProcedureAppointment = (procedureId, appointmentId) => (
+    { type: actionTypes.ADD_PROCEDURE_APPOINTMENT, payload: { procedureId, appointmentId } }
+)
+
+export const deleteProcedureAppointment = (id, appointmentId) => (
+    { type: actionTypes.DELETE_PROCEDURE_APPOINTMENT, payload: { id, appointmentId } }
 )

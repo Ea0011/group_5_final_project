@@ -5,7 +5,7 @@ describe("Patients action generator", () => {
     describe("Add new patient", () => {
         test("should generate correct action", () => {
             const patient = {
-                patientId: 23,
+                id: 23,
                 fname: 'Some',
                 lname: 'Name',
                 age: 23,
@@ -13,14 +13,14 @@ describe("Patients action generator", () => {
                 phone: '+37477434343',
                 email: 'somemail@mail.ru',
                 appointments: [{
-                    appointment_id: 1
+                    id: 1
                 }]
             };
 
             expect(actions.addPatient(patient)).toEqual({
                 type: actionTypes.ADD_PATIENT,
                 payload: {
-                    patientId: 23,
+                    id: 23,
                     fname: 'Some',
                     lname: 'Name',
                     age: 23,
@@ -38,7 +38,7 @@ describe("Patients action generator", () => {
             expect(actions.deletePatient(23))
                 .toEqual({
                     type: actionTypes.DELETE_PATIENT,
-                    payload: { patientId: 23 }
+                    payload: { id: 23 }
                 })
         })
     })
@@ -49,7 +49,7 @@ describe("Patients action generator", () => {
                 .toEqual({
                     type: actionTypes.UPDATE_PATIENT,
                     payload: {
-                        patientId: 23,
+                        id: 23,
                         newPatient: { fname: 'Edvard' }
                     }
                 })
@@ -60,7 +60,16 @@ describe("Patients action generator", () => {
         test("Should generate correct payload", () => {
             expect(actions.addPatientAppointment(23, 2)).toEqual({
                 type: actionTypes.ADD_PATIENT_APPOINTMENT,
-                payload: { patientId: 23, appointmentId: 2 }
+                payload: { id: 23, appointmentId: 2 }
+            })
+        })
+    })
+
+    describe("Delete an appointment from a patient", () => {
+        test("Should generate correct payload", () => {
+            expect(actions.deletePatientAppointment(23, 2)).toEqual({
+                type: actionTypes.DELETE_PATIENT_APPOINTMENT,
+                payload: { id: 23, appointmentId: 2 }
             })
         })
     })
