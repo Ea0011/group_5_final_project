@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_223642) do
+ActiveRecord::Schema.define(version: 2018_12_11_194637) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2018_12_09_223642) do
   end
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date "start_date"
+    t.date "end_date"
     t.integer "doctor_id"
     t.integer "patient_id"
     t.integer "procedure_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_12_09_223642) do
     t.string "fname"
     t.string "lname"
     t.string "email"
-    t.integer "pnumber"
+    t.string "pnumber"
     t.integer "age"
     t.string "gender"
     t.datetime "created_at", null: false
