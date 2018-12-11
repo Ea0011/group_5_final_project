@@ -24,7 +24,8 @@ export const getAppointmentsByPatient = (state = {}, patientId) => {
 }
 
 export const getProcedureByAppointment = (state = {}, appointmentId) => {
-  // write tests for this
+  const { procedure } = state.appointments[appointmentId];
+  return state.procedures[procedure];
 }
 
 export const getAppointmentsByProcedure = (state = {}, procedureId) => {

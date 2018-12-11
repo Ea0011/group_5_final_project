@@ -96,4 +96,10 @@ describe("Selectors for redux store", () => {
       ])
     })
   })
+
+  describe("Get procedure by appointment", () => {
+      test("Should get procedure of the given appointment", () => {
+          expect(selectors.getProcedureByAppointment(store, 1)).toEqual(store.procedures[30]);
+      })
+  })
 })
