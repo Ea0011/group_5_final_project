@@ -1,30 +1,30 @@
 import * as actionTypes from '../constants/actionTypes';
 
-export const patients = (state = {}, action) => {
+export const procedures = (state = {}, action) => {
     switch(action.type) {
         case actionTypes.ADD_PROCEDURE: {
             const newProcedure = {}
-            newProcedure[action.payload.procedureId] = {...action.payload};
+            newProcedure[action.payload.id] = {...action.payload};
             return Object.assign(state, newProcedure);
         }
         case actionTypes.DELETE_PROCEDURE: {
             const newState = {...state};
-            delete newState[action.payload.procedureId];
+            delete newState[action.payload.id];
             return newState;
         }
         case actionTypes.UPDATE_PROCEDURE: {
-            const { procedureId, newProcedure } = action.payload;
-            const newDetails = Object.assign({}, state[procedureId], newProcedure);
+            const { id, newProcedure } = action.payload;
+            const newDetails = Object.assign({}, state[id], newProcedure);
             const updatedProcedure = {};
-            updatedProcedure[procedureId] = newDetails;
+            updatedProcedure[id] = newDetails;
             return Object.assign({}, state, updatedProcedure);
         }
         case actionTypes.ADD_PROCEDURE_APPOINTMENT: {
-            const { procedureId, appointmentId } = action.payload;
-            const newDetails = { ...state[procedureId] };
+            const { id, appointmentId } = action.payload;
+            const newDetails = { ...state[id] };
             newDetails.appointments.push(appointmentId);
             const updatedProcedure = {}
-            updatedProcedure[procedureId] = newDetails;
+            updatedProcedure[id] = newDetails;
             return Object.assign({}, state, updatedProcedure);
         }
         case actionTypes.DELETE_PROCEDURE_APPOINTMENT: {
@@ -35,7 +35,7 @@ export const patients = (state = {}, action) => {
             const newDetails = { ...state[id], appointments: currentAppointments };
             const updatedProcedure = {};
             updatedProcedure[id] = newDetails;
-            return Object.assign({}, state, updatedPatient);
+            return Object.assign({}, state, updatedProcedure);
         }
         default:
             return state;

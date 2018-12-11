@@ -27,3 +27,16 @@ export const ADD_APPOINTMENT = "ADD_APPOINTMENT";
 export const DELETE_APPOINTMENT = "DELETE_APPOINTMENT";
 export const UPDATE_APPOINTMENT = "UPDATE_APPOINTMENT";
 
+
+//user action
+export const SET_USER = "SET_USER";
+export const DELETE_USER = "DELETE_USER";
+export const UPDATE_USER = "UPDATE_USER";
+
+
+//admin action
+export const ADD_ADMIN = "SET_ADMIN";
+export const DELETE_ADMIN = "DELETE_ADMIN";
+export const UPDATE_ADMIN = "UPDATE_ADMIN";
+
+
