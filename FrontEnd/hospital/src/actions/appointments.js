@@ -11,3 +11,11 @@ export const addAppointment = appointment => {
     payload: { ...appointment, patient: patientId, doctor: doctorId, procedure: procedureId, specialist }
   };
 }
+
+export const deleteAppointment = id => (
+  { type: actionTypes.DELETE_APPOINTMENT, payload: { id } }
+)
+
+export const updateAppointment = (id, newAppointment) => (
+  { type: actionTypes.UPDATE_APPOINTMENT, payload: { id, newAppointment } }
+)
