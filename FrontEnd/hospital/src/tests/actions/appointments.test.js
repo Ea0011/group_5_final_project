@@ -44,4 +44,23 @@ describe("Action creators for appointments", () => {
       })
     })
   })
+
+  describe("Delete appointment", () => {
+    test("Should generate correct payload", () => {
+      expect(actions.deleteAppointment(33)).toEqual({
+        type: actionTypes.DELETE_APPOINTMENT,
+        payload: { id: 33 }
+      })
+    })
+  })
+
+  describe("Update Appointment", () => {
+    test("Should generate correct payload", () => {
+      expect(actions.updateAppointment(11, { specialist: "Neurologist" })).toEqual({
+        type: actionTypes.UPDATE_APPOINTMENT,
+        payload: { id: 11, newAppointment: { specialist: "Neurologist" } }
+      })
+    })
+  })
+  
 })
