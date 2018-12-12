@@ -36,5 +36,17 @@ export const getAppointmentsByProcedure = (state = {}, procedureId) => {
 }
 
 export const getDoctorsBySpecialization = (state = {}, specialization) => {
-  // write tests for this
+  const specialists = state.doctors[specialization];
+  return Object.values(specialists);
+}
+
+export const getDoctors = (state = {}) => {
+  const specs = Object.values(state.doctors);
+  const doctors = [];
+  specs.forEach(spec => { doctors.push(Object.values(spec)[0]) });
+  return doctors;
+}
+
+export const getAppointments = (state = {}) => {
+  return Object.values(state.appointments);
 }

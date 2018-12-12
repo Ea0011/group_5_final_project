@@ -1,4 +1,4 @@
-import { patients, procedures } from '../../reducers/procedures';
+import { procedures } from '../../reducers/procedures';
 import * as actions from '../../actions/procedures';
 
 describe("Procedure reducer correctly manipulates state", () => {
