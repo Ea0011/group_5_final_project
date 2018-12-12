@@ -51,3 +51,5 @@
 /FrontEnd/hospital/yarn-debug.log*
 /FrontEnd/hospital/yarn-error.log*
 .vscode
+
+/Automation_Tests/.idea
