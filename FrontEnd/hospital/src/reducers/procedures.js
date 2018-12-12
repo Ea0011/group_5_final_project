@@ -19,14 +19,17 @@ export const procedures = (state = {}, action) => {
             updatedProcedure[id] = newDetails;
             return Object.assign({}, state, updatedProcedure);
         }
+        
         case actionTypes.ADD_PROCEDURE_APPOINTMENT: {
             const { id, appointmentId } = action.payload;
-            const newDetails = { ...state[id] };
-            newDetails.appointments.push(appointmentId);
+            const currentAppointments = [ ...state[id].appointments ];
+            currentAppointments.push(appointmentId);
+            const newDetails = { ...state[id], appointments: currentAppointments };
             const updatedProcedure = {}
             updatedProcedure[id] = newDetails;
             return Object.assign({}, state, updatedProcedure);
         }
+        
         case actionTypes.DELETE_PROCEDURE_APPOINTMENT: {
             const { id, appointmentId } = action.payload;
             const currentAppointments = [ ...state[id].appointments ];
