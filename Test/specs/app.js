@@ -1,15 +1,9 @@
-var webdriverio = require("webdriverio");
-var options = { desiredCapabilities: { browserName: "chrome" } };
-var client = webdriverio.remote(options);
+var assert = require("assert");
 
-client
-  .init()
-  .url("https://duckduckgo.com/")
-  .setValue("#search_form_input_homepage", "WebdriverIO")
-  .click("#search_button_homepage")
-  .getTitle()
-  .then(function(title) {
-    console.log("Title is: " + title);
-    // outputs: "Title is: WebdriverIO (Software) at DuckDuckGo"
-  })
-  .end();
+describe("webdriver.io page", function() {
+  it("should have the right title - the fancy generator way", function() {
+    browser.url("http://webdriver.io");
+    var title = browser.getTitle();
+    assert.equal(title, "WebdriverIO - WebDriver bindings for Node.js");
+  });
+});
