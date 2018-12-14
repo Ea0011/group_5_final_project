@@ -7,10 +7,10 @@ export const setUser = user => {
     return action;
 }
 
-export const deleteUser = id => (
-    { type: actionTypes.DELETE_USER, payload: { id } }
+export const deleteUser = () => (
+    { type: actionTypes.DELETE_USER }
 )
 
-export const updateUser = (id, newUser) => (
-    { type: actionTypes.UPDATE_USER, payload: { id, newUser } }
+export const updateUser = (newUser) => (
+    { type: actionTypes.UPDATE_USER, payload: { newUser } }
 )

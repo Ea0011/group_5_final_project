@@ -6,20 +6,20 @@ describe("admin action generator", () => {
         test("should generate correct action", () => {
             const admin = {
                 id: 45,
-                fname: 'Naira',
+                fname: 'Narek',
                 lname: 'Gevorgyan',
-                email: 'naira@info.am',
-                type: 'super_user'
+                email: 'narek@info.am',
+                type: 'not_super_user'
             };
 
             expect(actions.addAdmin(admin)).toEqual({
                 type: actionTypes.ADD_ADMIN,
                 payload: {
                     id: 45,
-                    fname: 'Naira',
+                    fname: 'Narek',
                     lname: 'Gevorgyan',
-                    email: 'naira@info.am',
-                    type: 'super_user'
+                    email: 'narek@info.am',
+                    type: 'not_super_user'
                 }
             })
         })
