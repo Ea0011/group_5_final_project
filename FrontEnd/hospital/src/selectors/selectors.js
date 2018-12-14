@@ -54,3 +54,7 @@ export const getAppointments = (state = {}) => {
 export const getPatients = (state = {}) => {
   return Object.values(state.patients);
 }
+
+export const getProcedures = (state = {}) => {
+  return Object.values(state.procedures);
+}

@@ -7,6 +7,7 @@ import * as userActions from '../actions/user';
 import * as patientActions from '../actions/patients';
 import { connect } from 'react-redux';
 import Patients from './patients';
+import Procedures from './procedures';
 import Grid from '@material-ui/core/Grid';
 
 class Page extends React.PureComponent {
@@ -42,14 +43,14 @@ class Page extends React.PureComponent {
       <React.Fragment>
         <Calendar style={{ height: '30%' }}/>
         <Grid container direction="row" style={{ height: '70%' }}>
-          <Grid container style={{width: '50%'}}>
+          <Grid container style={{width: '45%', margin: 8}}>
             <Grid item>
               <Patients />
             </Grid>
           </Grid>
           <Grid container style={{width: '50%'}}>
             <Grid item>
-              <Patients />
+              <Procedures />
             </Grid>
           </Grid>
         </Grid>

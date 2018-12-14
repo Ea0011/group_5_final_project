@@ -17,6 +17,7 @@ class App extends React.Component {
         <Switch>
           <PrivateRoute exact path='/' component={Page} />
           <PrivateRoute path='/patients' component={Page} />
+          <PrivateRoute path='/procedures' component={Page} />
           <Route path='/login' component={Authorization} />
         </Switch>
       </React.Fragment>
