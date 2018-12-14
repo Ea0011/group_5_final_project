@@ -4,7 +4,7 @@ export const users = (state = null, action) => {
     switch(action.type) {
         case actionTypes.SET_USER: {
             const newUser = {...action.payload};
-            return Object.assign(state, newUser);
+            return newUser;
         }
         case actionTypes.DELETE_USER: {
             return null;
