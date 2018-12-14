@@ -9,6 +9,7 @@ import Authorization from './components/authorize';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './routing/private_route';
+import AddPatient from './components/add_patient';
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
           <PrivateRoute exact path='/' component={Page} />
           <PrivateRoute path='/patients' component={Page} />
           <PrivateRoute path='/procedures' component={Page} />
+          <PrivateRoute path='/newpatient' component={AddPatient} />
           <Route path='/login' component={Authorization} />
         </Switch>
       </React.Fragment>
