@@ -5,7 +5,7 @@ export const patients = (state = {}, action) => {
         case actionTypes.ADD_PATIENT: {
             const newPatient = {}
             newPatient[action.payload.id] = {...action.payload};
-            return Object.assign(state, newPatient);
+            return Object.assign({}, state, newPatient);
         }
         case actionTypes.DELETE_PATIENT: {
             const newState = {...state};

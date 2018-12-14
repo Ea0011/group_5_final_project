@@ -50,3 +50,7 @@ export const getDoctors = (state = {}) => {
 export const getAppointments = (state = {}) => {
   return Object.values(state.appointments);
 }
+
+export const getPatients = (state = {}) => {
+  return Object.values(state.patients);
+}
