@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
+import * as patientActions from '../actions/patients';
 
 const PatientList = ({ getPatients, removePatient }) => {
   return(
@@ -54,8 +55,10 @@ const mapDispatchToProps = dispatch => ({
       headers.append("Authorization", window.localStorage.getItem("Authorization"));
       const params = { method: 'DELETE', headers }
       const deleteRequest = await fetch(`http://localhost:3000/patients/${id}`, params);
-      const response = await deleteRequest.json();
-      console.log(response);
+      console.log(deleteRequest);
+      if (deleteRequest.ok) {
+        dispatch(patientActions.deletePatient(id));
+      }
     } catch(e) {
       console.error(e);
     }

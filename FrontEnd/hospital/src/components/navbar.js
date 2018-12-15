@@ -81,7 +81,7 @@ class NavBar extends React.PureComponent {
     }
     return(
       <React.Fragment>
-        <AppBar position="static" color="primary">
+        <AppBar position="static" color="light">
           <ToolBar>
             <Typography style={{flexGrow: 1}} variant="h6" color="inherit">
               <Link to='/' style={{textDecoration: "none", color: "inherit"}}>
