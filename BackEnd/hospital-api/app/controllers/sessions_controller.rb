@@ -11,6 +11,10 @@ class SessionsController < ApplicationController
         head(:no_content)
     end
 
+    def current
+        json_response(current_user)
+    end
+
     private
 
     def admin_params

@@ -17,7 +17,9 @@ const Calendar = ({
                 defaultTimeStart={moment().add(-12, 'hour')}
                 defaultTimeEnd={moment().add(12, 'hour')}
                 sidebarWidth={250}
-                sidebarContent={"Doctors"}>
+                sidebarContent={"Doctors"}
+                onItemClick={(e) => { console.log(e.target) }}
+                onCanvasClick={(doctor, time, e) => { console.log(doctor, new Date(time)) }}>
                 <TodayMarker />
       </Timeline>
     </div>

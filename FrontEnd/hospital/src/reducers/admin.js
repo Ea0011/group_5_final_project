@@ -5,7 +5,7 @@ export const admins = (state = {}, action) => {
         case actionTypes.ADD_ADMIN: {
             const newAdmin = {}
             newAdmin[action.payload.id] = {...action.payload};
-            return Object.assign(state, newAdmin);
+            return Object.assign({}, state, newAdmin);
         }
         case actionTypes.DELETE_ADMIN: {
             const newState = {...state};

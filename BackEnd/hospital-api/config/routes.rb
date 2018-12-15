@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :admins
   post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#logout'
+  get '/current', to: 'sessions#current'
 end

@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import Patients from './patients';
 import Procedures from './procedures';
 import Grid from '@material-ui/core/Grid';
+import Navbar from './navbar';
 
 class Page extends React.PureComponent {
   state = {
@@ -41,6 +42,7 @@ class Page extends React.PureComponent {
     return(
       this.state.loading ? null :
       <React.Fragment>
+        <Navbar />
         <Calendar style={{ height: '30%' }}/>
         <Grid container direction="row" style={{ height: '70%' }}>
           <Grid container style={{width: '45%', margin: 8}}>
