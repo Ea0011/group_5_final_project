@@ -7,17 +7,17 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
-class AddPatient extends React.PureComponent {
+class UpdatePatient extends React.PureComponent {
   state = {
-    fname: '',
-    lname: '',
-    email: null,
-    pnumber: '',
-    age: '',
-    gender: 'Male'
+    fname: this.props.patient.fname,
+    lname: this.props.patient.lname,
+    email: this.props.patient.email,
+    pnumber: this.props.patient.pnumber,
+    age: this.props.patient.age,
+    gender: this.props.patient.gender
   }
 
-  addPatient = async(patient) => {
+  updatePatient = async(patient) => {
     try {
       const headers = new Headers();
       headers.append("Authorization", window.localStorage.getItem("Authorization"));
@@ -29,10 +29,10 @@ class AddPatient extends React.PureComponent {
       formData.append("age", age);
       formData.append("pnumber", pnumber);
       formData.append("gender", gender);
-      const params = { method: 'POST', headers, body: formData };
-      const addPatientRequest = await fetch("http://localhost:3000/patients", params);
-      const response = await addPatientRequest.json();
-      this.props.addPatient(response);
+      const params = { method: 'PUT', headers, body: formData };
+      const updatePatientRequest = await fetch("http://localhost:3000/patients", params);
+      const response = await updatePatientRequest.json();
+      this.props.updatePatient(response);
     } catch(e) {
       alert("Something went wrong");
     }
@@ -41,32 +41,38 @@ class AddPatient extends React.PureComponent {
   handleClick = () => {
     const { fname, lname, email, pnumber, age, gender } = this.state;
     if (fname && lname && pnumber && age && gender && email) {
-      this.addPatient({ fname, lname, email, pnumber, age, gender });
+      this.updatePatient({ fname, lname, email, pnumber, age, gender });
     } else {
       alert("All fields are mandatory");
     }
   }
 
   render() {
+      console.log(this.props);
     return(
       <Grid container direction="column" alignItems="center">
-        <TextField 
+        <TextField
+          value={this.state.fname}   
           hint="Enter firt name"
           label="first name"
           onChange={(e) => { this.setState({ fname: e.target.value }) }} />
         <TextField 
+          value={this.state.lname}
           hint="Enter last name"
           label="last name"
           onChange={(e) => { this.setState({ lname: e.target.value }) }} />
         <TextField 
+          value={this.state.email}
           hint="Enter email"
           label="email"
           onChange={(e) => { this.setState({ email: e.target.value }) }} />
         <TextField 
+          value={this.state.pnumber}
           hint="Enter phone number"
           label="phone number"
           onChange={(e) => { this.setState({ pnumber: e.target.value }) }} />
         <TextField 
+          value={this.state.age}
           hint="Enter the age"
           label="age"
           onChange={(e) => { this.setState({ age: e.target.value }) }} />
@@ -84,9 +90,9 @@ class AddPatient extends React.PureComponent {
     )
   }
 }
-
+const mapStateToProps = (state, { match }) => ({patient: state.patients[match.params.id]})
 const mapDispatchToProps = dispatch => ({
-  addPatient: (patient) => { dispatch(patientActions.addPatient(patient)) }
+  updatePatient: (patient) => { dispatch(patientActions.updatePatient(patient)) }
 });
 
-export default connect(null, mapDispatchToProps)(AddPatient);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdatePatient);
