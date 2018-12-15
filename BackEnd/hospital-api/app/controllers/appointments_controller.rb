@@ -19,6 +19,7 @@ class AppointmentsController < ApplicationController
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
+      DeleteAppointmentJob.set(wait_until: @appointment.end_date).perform_later(@appointment.id)
     else
       render json: @appointment.errors, status: :unprocessable_entity
     end
@@ -46,6 +47,6 @@ class AppointmentsController < ApplicationController
 
     
     def appointment_params
-      params.require(:appointment).permit(:start_date, :end_date, :doctor_id, :patient_id, :procedure_id)
+      params.permit(:start_date, :end_date, :doctor_id, :patient_id, :procedure_id)
     end
 end

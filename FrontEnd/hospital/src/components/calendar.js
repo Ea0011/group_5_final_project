@@ -8,19 +8,34 @@ import 'react-calendar-timeline/lib/Timeline.css';
 const Calendar = ({
   getDoctors,
   getProcedureByAppointment,
-  getAppointments 
+  getAppointments,
+  history,
+  getDoctorById 
 }) => {
+  console.log(getDoctorById(1));
   return(
     <div style={{margin: 16}}>
-      <Timeline groups={getDoctors().map(doctor => { return { id: doctor.id, title: doctor.fname + doctor.lname } })}
-                items={getAppointments().map(appt => { return { id: appt.id, group: appt.doctor, title: getProcedureByAppointment(appt.id).name, start_time: new Date(appt.start_date), end_time: new Date(appt.end_date)} })}
-                defaultTimeStart={moment().add(-12, 'hour')}
-                defaultTimeEnd={moment().add(12, 'hour')}
-                sidebarWidth={250}
-                sidebarContent={"Doctors"}
-                onItemClick={(e) => { console.log(e.target) }}
-                onCanvasClick={(doctor, time, e) => { console.log(doctor, new Date(time)) }}>
-                <TodayMarker />
+      <Timeline
+          groups={getDoctors().map(doctor => { return { id: doctor.id, title: doctor.fname + doctor.lname } })}
+          items={getAppointments().map(appt => { return { id: appt.id, group: appt.doctor, title: getProcedureByAppointment(appt.id).name, start_time: new Date(appt.start_date), end_time: new Date(appt.end_date)} })}
+          defaultTimeStart={moment().add(-12, 'hour')}
+          defaultTimeEnd={moment().add(12, 'hour')}
+          sidebarWidth={250}
+          sidebarContent={"Doctors"}
+          onItemClick={(item, e, time) => { console.log(item, e, time) }}
+          onItemMove={(id, time, group) => {
+             return true;
+          }}
+          onCanvasClick={(doctor, time, e) => { 
+            if (time <= Date.now()) {
+              alert("Cannot create appointment in the past");
+            } else {
+              console.log(doctor);
+              history.push(`/newappointment/${getDoctorById(doctor).specialization}/${doctor}/${time}`);
+            }
+          }}
+          canResize={false}>
+        <TodayMarker />
       </Timeline>
     </div>
   )
@@ -33,7 +48,9 @@ const mapStateToProps = state => {
     },
     getProcedureByAppointment: id => { return selectors.getProcedureByAppointment(state, id) },
     getDoctors: () => { return selectors.getDoctors(state) },
-    getAppointments: () => selectors.getAppointments(state)
+    getAppointments: () => selectors.getAppointments(state),
+    getDoctorById: (id) => selectors.getDoctorById(state, id),
+    getAppointmentById: (id) => selectors.getAppointmentById(state, id)
   }
 }
 

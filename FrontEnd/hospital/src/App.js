@@ -20,6 +20,7 @@ class App extends React.Component {
           <PrivateRoute path='/procedures' component={Page} />
           <PrivateRoute path='/newpatient' component={Page} />
           <PrivateRoute path='/newprocedure' component={Page} />
+          <PrivateRoute path='/newappointment' component={Page} />
           <Route path='/login' component={Authorization} />
           {/* <SuperRoute path='/adminpage' component={AdminPage} /> */}
         </Switch>

@@ -62,3 +62,27 @@ export const getProcedures = (state = {}) => {
 export const getSpecialists = (state = {}) => {
   return Object.keys(state.doctors);
 }
+
+export const getProceduresBySpecialist = (state = {}, spec) => {
+  const procs = Object.values(state.procedures);
+  return procs.filter(proc => proc.specialist === spec);
+}
+
+export const getDoctorById = (state = {}, id) => {
+  const specs = Object.keys(state.doctors);
+  for (let i = 0; i < specs.length; i++) {
+    const idx = Object.values(state.doctors[specs[i]]).map(doctor => doctor.id);
+    const pos = idx.indexOf(id);
+    if (pos >= 0) {
+      return state.doctors[specs[i]][id];
+    }
+  }
+}
+
+export const getProcedureById = (state = {}, id) => {
+  return state.procedures[id];
+}
+
+export const getAppointmentById = (state = {}, id) => {
+  return state.appointments[id];
+}

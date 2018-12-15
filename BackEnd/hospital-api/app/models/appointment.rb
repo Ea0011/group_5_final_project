@@ -19,8 +19,12 @@ class Appointment < ApplicationRecord
   end 
 
   def check_hours
-    errors.add(:start_date, "Cannot be earlier than 9 AM") if start_date.strftime("%H").to_i < 9
-    errors.add(:end_date, "Cannot be later than 6 PM") if end_date.strftime("%H").to_i >= 18
+    errors.add(:start_date, "Cannot be earlier than 9 AM") if start_date.strftime("%H").to_i < 5
+    errors.add(:end_date, "Cannot be later than 6 PM") if end_date.strftime("%H").to_i >= 22
+  end
+
+  def self.time_zone_aware_attributes
+    false
   end
 
 end
