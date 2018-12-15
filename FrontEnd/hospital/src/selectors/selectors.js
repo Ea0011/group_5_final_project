@@ -58,3 +58,7 @@ export const getPatients = (state = {}) => {
 export const getProcedures = (state = {}) => {
   return Object.values(state.procedures);
 }
+
+export const getSpecialists = (state = {}) => {
+  return Object.keys(state.doctors);
+}

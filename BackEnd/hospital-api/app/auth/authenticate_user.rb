@@ -7,7 +7,7 @@ class AuthenticateUser
     def call
         current_user = user
         token = Devise.friendly_token
-        current_user.update(authentication_token: token)
+        current_user.update!(authentication_token: token)
         {
             user: current_user
         }
