@@ -9,6 +9,7 @@ import Authorization from './components/authorize';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import './App.css';
 import PrivateRoute from './routing/private_route';
+import SuperRoute from './routing/super_user_router';
 import AddPatient from './components/add_patient';
 import AddProcedure from './components/add_procedure';
 
@@ -23,6 +24,7 @@ class App extends React.Component {
           <PrivateRoute path='/newpatient' component={AddPatient} />
           <PrivateRoute path='/newprocedure' component={AddProcedure} />
           <Route path='/login' component={Authorization} />
+          {/* <SuperRoute path='/adminpage' component={AdminPage} /> */}
         </Switch>
       </React.Fragment>
     );
