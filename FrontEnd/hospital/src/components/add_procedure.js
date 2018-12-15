@@ -11,8 +11,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 class AddProcedure extends React.PureComponent {
   state = {
     name: '',
-    duration: '',
-    specialist: ''
+    duration: 1,
+    specialist: this.props.getSpecialists()[0]
   }
 
   addProcedure = async(procedure) => {
@@ -49,13 +49,9 @@ class AddProcedure extends React.PureComponent {
           hint="Enter name"
           label="name"
           onChange={(e) => { this.setState({ name: e.target.value }) }} />
-        <TextField 
-          hint="Enter duration"
-          label="duration"
-          onChange={(e) => { this.setState({ lname: e.target.value }) }} />
+        <h5> select duration </h5>
         <Select 
           value={this.state.duration}
-          label="Duration"
           onChange={(e) => { this.setState({ duration: e.target.value }) }}>
           <MenuItem value={1}>One</MenuItem>
           <MenuItem value={2}>Two</MenuItem>
@@ -68,11 +64,7 @@ class AddProcedure extends React.PureComponent {
           <MenuItem value={9}>Nine</MenuItem>
           <MenuItem value={10}>Ten</MenuItem>
         </Select> 
-
-        <TextField 
-          hint="Enter specialist"
-          label="specialist name"
-          onChange={(e) => { this.setState({ email: e.target.value }) }} />
+        <h5> select specialist </h5>
         <Select 
           value={this.state.specialist}
           onChange={(e) => { this.setState({ specialist: e.target.value }) }}>

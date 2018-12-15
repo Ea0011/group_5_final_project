@@ -70,6 +70,7 @@ class AddPatient extends React.PureComponent {
           hint="Enter the age"
           label="age"
           onChange={(e) => { this.setState({ age: e.target.value }) }} />
+        <h5> select gender </h5>
         <Select 
           value={this.state.gender}
           onChange={(e) => { this.setState({ gender: e.target.value }) }}>
