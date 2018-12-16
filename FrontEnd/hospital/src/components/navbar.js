@@ -37,13 +37,32 @@ class NavBar extends React.PureComponent {
       }
     }
   }
+  logout = async() =>{
+    try {
+      const headers = new Headers();
+      headers.append("Authorization", window.localStorage.getItem("Authorization"));
+      const params = { method: 'DELETE', headers};
+      const request = await fetch("http://localhost:3000/logout", params);
+      window.localStorage.removeItem("Authorization");
+    } catch(e) {
+      alert("Something went wrong, please try again");
+    }
+  }
+
+  handleClick = () => {
+   this.logout();
+  }
 
   render() {
     let navigation
     if (this.props.currentUser) {
       navigation = this.props.currentUser.super_user ? 
       <>
-        <Avatar>{this.props.currentUser.fname[0]}{this.props.currentUser.lname[0]}</Avatar>
+        <Link to='/login' style={styles.links}>
+          <IconButton onClick={this.handleClick} >
+          <Avatar>{this.props.currentUser.fname[0]}{this.props.currentUser.lname[0]}</Avatar>
+          </IconButton>
+        </Link>
         <Link to='/admins' style={styles.links}>
           <IconButton>
             <Person />
@@ -55,8 +74,10 @@ class NavBar extends React.PureComponent {
           </IconButton>
         </Link>
       </> : 
-      <>
+      <>  
+      <IconButton onClick={this.handleClick} >
       <Avatar>{this.props.currentUser.fname[0]}{this.props.currentUser.lname[0]}</Avatar>
+      </IconButton>
       <Link to='/newpatient' style={styles.links}>
         <IconButton>
           <PersonAdd />
