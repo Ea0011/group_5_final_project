@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import Delete from '@material-ui/icons/Delete';
 import Edit from '@material-ui/icons/Edit';
+import * as procedureActions from '../actions/procedures';
 
 const ProcedureList = ({ getProcedures, removeProcedure }) => {
   return(
@@ -57,8 +58,11 @@ const mapDispatchToProps = dispatch => ({
       headers.append("Authorization", window.localStorage.getItem("Authorization"));
       const params = { method: 'DELETE', headers }
       const deleteRequest = await fetch(`http://localhost:3000/procedures/${id}`, params);
-      const response = await deleteRequest.json();
-      console.log(response);
+      if (deleteRequest.ok) {
+        dispatch(procedureActions.deleteProcedure(id));
+      } else {
+        alert("Something went wrong");
+      }
     } catch(e) {
       console.error(e);
     }

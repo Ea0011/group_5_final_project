@@ -26,7 +26,6 @@ class Authorize extends React.PureComponent {
       } else {
         const { id, super_user, fname, lname, authentication_token } = response;
         this.props.setUser({ id, super_user, fname, lname });
-        console.log(authentication_token);
         window.localStorage.setItem("Authorization", authentication_token);
         this.setState({ redirect: true });
       }

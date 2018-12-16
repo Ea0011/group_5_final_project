@@ -12,7 +12,7 @@ class Appointment < ApplicationRecord
   end
 
   def check_availabilty
-    res = Appointment.where("doctor_id = ? AND start_date <= ? AND end_date >= ?", doctor_id, end_date, start_date)
+    res = Appointment.where("doctor_id = ? AND start_date <= ? AND end_date >= ? AND id != ?", doctor_id, end_date, start_date, id)
     if res.first != nil
       errors.add(:start_date, "Cannot overlap")
     end
@@ -20,7 +20,7 @@ class Appointment < ApplicationRecord
 
   def check_hours
     errors.add(:start_date, "Cannot be earlier than 9 AM") if start_date.strftime("%H").to_i < 5
-    errors.add(:end_date, "Cannot be later than 6 PM") if end_date.strftime("%H").to_i >= 22
+    errors.add(:end_date, "Cannot be later than 6 PM") if end_date.strftime("%H").to_i >= 14
   end
 
   def self.time_zone_aware_attributes

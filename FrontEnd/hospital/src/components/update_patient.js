@@ -6,6 +6,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import * as selectors from '../selectors/selectors';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import { ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import Delete from '@material-ui/icons/DeleteForever';
+import * as appointmentActions from '../actions/appointments';
+import * as doctorActions from '../actions/doctors';
 
 class UpdatePatient extends React.PureComponent {
   state = {
@@ -47,8 +54,34 @@ class UpdatePatient extends React.PureComponent {
     }
   }
 
+  deleteAppointment = async(apptId, cb) => {
+    try {
+      const headers = new Headers();
+      headers.append("Authorization", window.localStorage.getItem("Authorization"));
+      const params = { method: 'DELETE', headers };
+      const deleteRequest = await fetch(`http://localhost:3000/appointments/${apptId}`, params);
+      if (!deleteRequest.ok) {
+        alert("Something went wrong");
+      } else {
+        cb(apptId, this.props.patient.id, this.props.getDoctorByAppointment(apptId));
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
+  dateFormat = (string) => {
+    const date = new Date(string);
+    const yearOnly = date.getFullYear();
+    const monthOnly = date.getMonth();
+    const dateOnly = date.getDate();
+    const hoursOnly = date.getHours();
+    const minutesOnly = date.getMinutes();
+
+    return `${yearOnly}-${monthOnly}-${dateOnly} ${hoursOnly}:${minutesOnly};`
+  }
+
   render() {
-      console.log(this.props);
     return(
       <Grid container direction="column" alignItems="center">
         <TextField
@@ -86,13 +119,38 @@ class UpdatePatient extends React.PureComponent {
         <Button
           primary="true"
           onClick={(e) => { this.handleClick() }}>Submit</Button>
+          {this.props.patientAppointments.length === 0 ? null : (
+            <List dense={false}>
+              {this.props.patientAppointments.map(appt => 
+                <ListItem key={appt.id}>
+                  <ListItemText
+                   primary={`from:${this.dateFormat(appt.start_date)} to:${this.dateFormat(appt.end_date)}`}
+                   secondary={`Doctor: ${this.props.getDoctorByAppointment(appt.id).fname}`}/>
+                   <ListItemSecondaryAction>
+                     <IconButton onClick={(e) => { this.deleteAppointment(appt.id, this.props.deleteAppointment) }}>
+                       <Delete />
+                     </IconButton>
+                   </ListItemSecondaryAction>
+                </ListItem>
+              )}
+            </List>
+          )}
         </Grid>
     )
   }
 }
-const mapStateToProps = (state, { match }) => ({patient: state.patients[match.params.id]})
+const mapStateToProps = (state, { match }) => ({
+  patient: state.patients[match.params.id],
+  patientAppointments: selectors.getAppointmentsByPatient(state, match.params.id),
+  getDoctorByAppointment: (id) => selectors.getDoctorByAppointment(state, id)
+})
 const mapDispatchToProps = dispatch => ({
-  updatePatient: (patient) => { dispatch(patientActions.updatePatient(patient)) }
+  updatePatient: (patient) => { dispatch(patientActions.updatePatient(patient)) },
+  deleteAppointment: (apptId, patientId, doctor) => { 
+    dispatch(patientActions.deletePatientAppointment(patientId, apptId));
+    dispatch(appointmentActions.deleteAppointment(apptId));
+    dispatch(doctorActions.deleteDoctorAppointment(doctor.specialization, doctor.id, apptId))
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdatePatient);

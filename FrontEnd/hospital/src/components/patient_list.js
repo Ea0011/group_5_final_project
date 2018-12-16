@@ -55,7 +55,6 @@ const mapDispatchToProps = dispatch => ({
       headers.append("Authorization", window.localStorage.getItem("Authorization"));
       const params = { method: 'DELETE', headers }
       const deleteRequest = await fetch(`http://localhost:3000/patients/${id}`, params);
-      console.log(deleteRequest);
       if (deleteRequest.ok) {
         dispatch(patientActions.deletePatient(id));
       }

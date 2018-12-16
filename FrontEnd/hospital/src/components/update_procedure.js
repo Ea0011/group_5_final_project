@@ -43,7 +43,6 @@ class UpdateProcedure extends React.PureComponent {
   }
 
   render() {
-      console.log(this.props);
     return(
       <Grid container direction="column" alignItems="center">
         <TextField

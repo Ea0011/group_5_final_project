@@ -41,9 +41,12 @@ export const getDoctorsBySpecialization = (state = {}, specialization) => {
 }
 
 export const getDoctors = (state = {}) => {
-  const specs = Object.values(state.doctors);
-  const doctors = [];
-  specs.forEach(spec => { doctors.push(Object.values(spec)[0]) });
+  const specs = Object.keys(state.doctors);
+  let doctors = [];
+  specs.forEach(spec => {
+    const specialists = Object.values(state.doctors[spec]);
+    doctors = [...specialists];
+  });
   return doctors;
 }
 
