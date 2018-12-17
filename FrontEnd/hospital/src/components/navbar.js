@@ -60,7 +60,7 @@ class NavBar extends React.PureComponent {
       <>
         <Link to='/login' style={styles.links}>
           <IconButton onClick={this.handleClick} >
-          <Avatar>{this.props.currentUser.fname[0]}{this.props.currentUser.lname[0]}</Avatar>
+            <Avatar>{this.props.currentUser.fname[0]}{this.props.currentUser.lname[0]}</Avatar>
           </IconButton>
         </Link>
         <Link to='/admins' style={styles.links}>

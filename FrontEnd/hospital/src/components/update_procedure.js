@@ -73,7 +73,7 @@ class UpdateProcedure extends React.PureComponent {
         </Select> 
         <Button
           primary="true"
-          onClick={(e) => { this.handleClick() }}>Submit</Button>
+          onClick={this.handleClick}>Submit</Button>
         </Grid>
     )
   }
