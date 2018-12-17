@@ -12,7 +12,7 @@ class Appointment < ApplicationRecord
   end
 
   def check_availabilty
-    res = Appointment.where("doctor_id = ? AND start_date <= ? AND end_date >= ? AND id != ?", doctor_id, end_date, start_date, id)
+    res = Appointment.where("doctor_id = ? AND start_date <= ? AND end_date >= ?", doctor_id, end_date, start_date)
     if res.first != nil
       errors.add(:start_date, "Cannot overlap")
     end
