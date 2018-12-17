@@ -25,7 +25,7 @@ class UpdateProcedure extends React.PureComponent {
       formData.append("duration", duration);
       formData.append("specialist", specialist);
       const params = { method: 'PUT', headers, body: formData };
-      const updateProcedureRequest = await fetch("http://localhost:3000/patients", params);
+      const updateProcedureRequest = await fetch(`http://localhost:3000/procedures/${this.props.procedure.id}`, params);
       const response = await updateProcedureRequest.json();
       this.props.updateProcedure(response);
     } catch(e) {
@@ -80,7 +80,7 @@ class UpdateProcedure extends React.PureComponent {
 }
 const mapStateToProps = (state, { match }) => ({procedure: state.procedures[match.params.id], getSpecialists: ()  => selectors.getSpecialists(state)})
 const mapDispatchToProps = dispatch => ({
-  updateProcedure: (procedure) => { dispatch(procedureActions.updateProcedure(procedure)) }
+  updateProcedure: (procedure) => { dispatch(procedureActions.updateProcedure(procedure.id, procedure)) }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateProcedure);
