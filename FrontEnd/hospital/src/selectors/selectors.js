@@ -45,7 +45,7 @@ export const getDoctors = (state = {}) => {
   let doctors = [];
   specs.forEach(spec => {
     const specialists = Object.values(state.doctors[spec]);
-    doctors = [...specialists];
+    doctors = doctors.concat(specialists);
   });
   return doctors;
 }
