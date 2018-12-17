@@ -41,6 +41,12 @@ class AddAppointment extends React.PureComponent {
     }
   }
 
+  static getDerivedStateFromProps(props, state) {
+    const newState = {...state};
+    newState.procedure = props.getProcedures[0] === undefined ? null : props.getProcedures[0].id
+    return newState;
+  }
+
   render() {
     return(
       !this.state.patient || !this.state.procedure ? <h1>No patients or no suitable procedures</h1> : 
@@ -77,7 +83,7 @@ const mapDispatchToProps = dispatch => ({
   addAppointment: (appointment) => { 
     dispatch(appointmentActions.addAppointment(appointment));
     dispatch(patientActions.addPatientAppointment(appointment.patient.id, appointment.id)); 
-    dispatch(doctorActions.addDoctorAppointment(appointment.doctor.id, appointment.id)) 
+    dispatch(doctorActions.addDoctorAppointment(appointment.doctor.specialization, appointment.doctor.id, appointment.id)) 
   }
 });
 

@@ -37,9 +37,10 @@ class UpdatePatient extends React.PureComponent {
       formData.append("pnumber", pnumber);
       formData.append("gender", gender);
       const params = { method: 'PUT', headers, body: formData };
-      const updatePatientRequest = await fetch("http://localhost:3000/patients", params);
+      const updatePatientRequest = await fetch(`http://localhost:3000/patients/${this.props.patient.id}`, params);
       const response = await updatePatientRequest.json();
       this.props.updatePatient(response);
+      console.log(response);
     } catch(e) {
       alert("Something went wrong");
     }
@@ -118,7 +119,7 @@ class UpdatePatient extends React.PureComponent {
         </Select>  
         <Button
           primary="true"
-          onClick={(e) => { this.handleClick() }}>Submit</Button>
+          onClick={this.handleClick}>Submit</Button>
           {this.props.patientAppointments.length === 0 ? null : (
             <List dense={false}>
               {this.props.patientAppointments.map(appt => 
@@ -145,7 +146,7 @@ const mapStateToProps = (state, { match }) => ({
   getDoctorByAppointment: (id) => selectors.getDoctorByAppointment(state, id)
 })
 const mapDispatchToProps = dispatch => ({
-  updatePatient: (patient) => { dispatch(patientActions.updatePatient(patient)) },
+  updatePatient: (patient) => { dispatch(patientActions.updatePatient(patient.id, patient)) },
   deleteAppointment: (apptId, patientId, doctor) => { 
     dispatch(patientActions.deletePatientAppointment(patientId, apptId));
     dispatch(appointmentActions.deleteAppointment(apptId));
